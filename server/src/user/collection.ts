@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { RegisterDto } from "./dto";
+import { LoginDto, RegisterDto } from "./dto";
 import { validate } from "class-validator";
 import { StatusCodes } from "http-status-codes";
 import { prisma } from "../config/prisma";
-import { hash } from "bcrypt";
+import { compare, hash } from "bcrypt";
 import * as jwt from "jsonwebtoken";
 import { sendMail } from "../util/mail";
 
@@ -131,6 +131,64 @@ export class UserCollection {
       return res
         .status(StatusCodes.OK)
         .json({ message: "User activated successfully", user });
+    } catch (error: any) {
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        message: "Something went wrong",
+        error: error.message || error,
+      });
+    }
+  }
+
+  async Login(req: Request, res: Response) {
+    try {
+      const loginDto = new LoginDto(req.body);
+
+      const errors = await validate(loginDto);
+      if (errors.length > 0) {
+        return res.status(StatusCodes.CONFLICT).json({
+          error: errors.map((e) => e.constraints),
+        });
+      }
+
+      const user = await prisma.user.findUnique({
+        where: {
+          email: loginDto.email,
+        },
+      });
+
+      if (!user) {
+        return res.status(StatusCodes.BAD_REQUEST).json({
+          message: "user not found",
+        });
+      }
+
+      const match = await compare(loginDto.password, user.password);
+
+      if (!match) {
+        return res.status(StatusCodes.BAD_REQUEST).json({
+          message: "Incorrect Password",
+        });
+      }
+
+      const payload = {
+        sub: user.id,
+        username: user.username,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+        address: user.address,
+        avatar: user.avatar,
+      };
+
+      const token = jwt.sign(payload, `${process.env.ACCESS_TOKEN_SECRET}`);
+
+      return res.status(StatusCodes.OK).json({
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+        address: user.address,
+        token: token,
+      });
     } catch (error: any) {
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         message: "Something went wrong",
