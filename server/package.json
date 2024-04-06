@@ -2,9 +2,12 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --watch src --exec ts-node src/main.ts",
+    "start": "ts-node ./src/main.ts",
+    "postinstall": "prisma generate"
   },
   "author": "chola lc kuboko",
   "license": "ISC",
