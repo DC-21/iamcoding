@@ -45,17 +45,15 @@ export class UserCollection {
 
       const hashPassword = await hash(dto.password, 10);
 
-      const user = await prisma.user.create({
-        data: {
-          username: dto.username,
-          firstname: dto.firstname,
-          lastname: dto.lastname,
-          email: dto.email,
-          password: hashPassword,
-          phone: dto.phone,
-          address: dto.address,
-        },
-      });
+      const user = {
+        username: dto.username,
+        firstname: dto.firstname,
+        lastname: dto.lastname,
+        email: dto.email,
+        password: hashPassword,
+        phone: dto.phone,
+        address: dto.address,
+      };
 
       const activationCode = Math.floor(
         1000 + Math.random() * 900000
@@ -83,6 +81,56 @@ export class UserCollection {
       return res.status(StatusCodes.OK).json({
         activation_token: token,
       });
+    } catch (error: any) {
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        message: "Something went wrong",
+        error: error.message || error,
+      });
+    }
+  }
+
+  async activateUser(req: Request, res: Response) {
+    try {
+      const activation_token = req.headers["activation-token"];
+
+      if (!activation_token) {
+        return res
+          .status(StatusCodes.BAD_REQUEST)
+          .json({ message: "Activation token not provided" });
+      }
+
+      const { activationCode } = req.body;
+
+      const activationTokenString = Array.isArray(activation_token)
+        ? activation_token[0]
+        : activation_token;
+      const decodedToken = jwt.verify(
+        activationTokenString,
+        `${process.env.ACTIVATION_SECRET}`
+      ) as unknown as { user: any; activationCode: string };
+
+      console.log(decodedToken);
+
+      if (decodedToken.activationCode !== activationCode) {
+        return res
+          .status(StatusCodes.BAD_REQUEST)
+          .json({ message: "Activation codes do not match" });
+      }
+
+      const user = await prisma.user.create({
+        data: {
+          username: decodedToken.user.username,
+          firstname: decodedToken.user.firstname,
+          lastname: decodedToken.user.lastname,
+          email: decodedToken.user.email,
+          password: decodedToken.user.password,
+          phone: decodedToken.user.phone,
+          address: decodedToken.user.address,
+        },
+      });
+      return res
+        .status(StatusCodes.OK)
+        .json({ message: "User activated successfully", user });
     } catch (error: any) {
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         message: "Something went wrong",
