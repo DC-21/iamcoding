@@ -15,6 +15,12 @@ const Navbar = () => {
           teach
         </a>
       </div>
+      <div className="flex gap-4 items-center">
+        <a href="">Register</a>
+        <a className="bg-green-600 hover:bg-green-500 p-3 rounded-md" href="">
+          Login
+        </a>
+      </div>
     </nav>
   );
 };
