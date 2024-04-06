@@ -74,7 +74,7 @@ export class UserCollection {
 
       await sendMail({
         to: dto.email,
-        from: "cholahkuboko@gmail.com",
+        from: `${process.env.SMTP_MAIL}`,
         subject: "Activate your account",
         name: dto.username,
         activationCode: activationCode,
