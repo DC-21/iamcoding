@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { LoginDto, RegisterDto } from "./dto";
+import { LoginDto, RegisterDto, UpdateAvatarDto } from "./dto";
 import { validate } from "class-validator";
 import { StatusCodes } from "http-status-codes";
 import { prisma } from "../config/prisma";
@@ -188,6 +188,55 @@ export class UserCollection {
         email: user.email,
         address: user.address,
         token: token,
+      });
+    } catch (error: any) {
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        message: "Something went wrong",
+        error: error.message || error,
+      });
+    }
+  }
+
+  async Update(req: Request, res: Response) {
+    try {
+      const { id } = { id: Number(req.params.id) };
+      const updateUserDto = new UpdateAvatarDto({
+        id,
+        ...req.body,
+      });
+
+      const errors = await validate(updateUserDto);
+
+      if (errors.length > 0) {
+        return res.status(StatusCodes.CONFLICT).json({
+          error: errors.map((e) => e.constraints),
+        });
+      }
+
+      const existingUser = await prisma.user.findUnique({
+        where: {
+          id: id,
+        },
+      });
+
+      if (!existingUser) {
+        return res.status(StatusCodes.NOT_FOUND).json({
+          message: "User not found",
+        });
+      }
+
+      const avatar = await prisma.user.update({
+        where: {
+          id: id,
+        },
+        data: {
+          avatar: updateUserDto.avatar,
+        },
+      });
+
+      return res.status(StatusCodes.OK).json({
+        message: "User updated successfully",
+        avatar,
       });
     } catch (error: any) {
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({

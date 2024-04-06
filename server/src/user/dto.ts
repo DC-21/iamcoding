@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsString, IsUrl } from "class-validator";
 
 export class RegisterDto {
   @IsString()
@@ -50,5 +50,15 @@ export class LoginDto {
   constructor(d: LoginDto) {
     this.email = d.email;
     this.password = d.password;
+  }
+}
+
+export class UpdateAvatarDto {
+  @IsNotEmpty()
+  @IsUrl()
+  readonly avatar: string;
+
+  constructor(d: UpdateAvatarDto) {
+    this.avatar = d.avatar;
   }
 }
