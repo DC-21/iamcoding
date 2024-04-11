@@ -13,14 +13,78 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Category {
+  PROGRAMMING
+  IOT
+  CLOUD_COMPUTING
+  AI
+  ML
+  DATA_SCIENCE
+  NETWORKING
+  MARKETING
+  ACCOUNTING
+  DESIGN
+  CYBER_SECURITY
+  BLOCKCHAIN
+  BANKING
+}
+
 model User {
-  id        Int     @unique @default(autoincrement())
-  username  String  @unique
-  firstname String
-  lastname  String
-  email     String  @unique
-  password  String
-  phone     String
-  address   String
-  avatar    String?
+  id         Int        @unique @default(autoincrement())
+  username   String     @unique
+  firstname  String
+  lastname   String
+  email      String     @unique
+  password   String
+  phone      String
+  address    String
+  avatar     String?
+  bootcamp   BootCamp[]
+  bootcampId Int?
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @default(now())
+  Course     Course[]
+}
+
+model BootCamp {
+  id          Int      @unique @default(autoincrement())
+  title       String
+  description String
+  category    Category
+  registered  Int[]
+  starting    DateTime
+  ending      DateTime
+  duration    Int
+  rating      Float?
+  videos      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  author      User?    @relation(fields: [authorId], references: [id])
+  authorId    Int?
+  completed   Boolean?
+}
+
+model Course {
+  id          Int      @unique @default(autoincrement())
+  title       String
+  description String
+  category    Category
+  duration    DateTime
+  videos      Videos[]
+  rating      String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  user        User?    @relation(fields: [authorId], references: [id])
+  authorId    Int?
+}
+
+model Videos {
+  id        Int      @unique @default(autoincrement())
+  title     String
+  number    Int
+  duration  DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  Course    Course?  @relation(fields: [courseId], references: [id])
+  courseId  Int?
 }
