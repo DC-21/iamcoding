@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { validate } from "class-validator";
-import { CreateBootCampDto, FindDto } from "./dto";
+import { CreateBootCampDto, FindDto, UpdateBootCampDto } from "./dto";
 import { prisma } from "../config/prisma";
 
 export class BootCampCollection {
@@ -42,7 +42,7 @@ export class BootCampCollection {
   async update(req: Request, res: Response) {
     try {
       const id = Number(req.params.id);
-      const dto = new CreateBootCampDto(req.body);
+      const dto = new UpdateBootCampDto(req.body);
 
       const errors = await validate(dto);
       if (errors.length > 0) {
@@ -57,12 +57,14 @@ export class BootCampCollection {
           title: dto.title,
           description: dto.description,
           category: dto.category,
-          starting: new Date(dto.starting),
-          ending: new Date(dto.ending),
+          registered: dto.registered ? { set: dto.registered } : undefined,
+          starting: dto.starting ? new Date(dto.starting) : undefined,
+          ending: dto.ending ? new Date(dto.ending) : undefined,
           duration: dto.duration,
-          rating: dto.rating || 0,
+          rating: dto.rating,
           videos: dto.videos,
           authorId: dto.authorId,
+          completed: dto.completed,
         },
       });
 
