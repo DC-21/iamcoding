@@ -65,17 +65,41 @@ model BootCamp {
 }
 
 model Course {
-  id          Int      @unique @default(autoincrement())
+  id          Int        @unique @default(autoincrement())
   title       String
   description String
   category    Category
+  chapter     Chapters[]
   duration    DateTime
   videos      Videos[]
   rating      String[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now())
-  user        User?    @relation(fields: [authorId], references: [id])
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @default(now())
+  user        User?      @relation(fields: [authorId], references: [id])
   authorId    Int?
+}
+
+model Chapters {
+  id        Int       @unique @default(autoincrement())
+  title     String
+  number    Int
+  duration  DateTime
+  modules   Modules[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+  Course    Course?   @relation(fields: [courseId], references: [id])
+  courseId  Int?
+}
+
+model Modules {
+  id         Int       @unique @default(autoincrement())
+  title      String
+  number     Int
+  duration   DateTime
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @default(now())
+  Chapters   Chapters? @relation(fields: [chaptersId], references: [id])
+  chaptersId Int?
 }
 
 model Videos {
