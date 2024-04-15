@@ -1,32 +1,36 @@
-import bg from "../../assets/software.jpg";
+import img2 from "../../assets/img2.jpg";
 
 const Hero = () => {
   return (
-    <section className="">
-      <div className="min-h-screen flex w-full p-10 bg-slate-950 justify-center items-center">
-        <div className="w-full flex justify-center px-24">
-          <div className="w-full flex justify-center items-center p-4 gap-4 bg-white rounded shadow-sm shadow-gray-600">
-            <a href="">
-              <svg
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
-                height="3em"
-                width="3em"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <path d="M17 10 A7 7 0 0 1 10 17 A7 7 0 0 1 3 10 A7 7 0 0 1 17 10 z" />
-                <path d="M21 21l-6-6" />
-              </svg>
-            </a>
-            <input
-              placeholder="search"
-              className="p-3 outline-none rounded w-full text-lg text-slate-950"
-              type="text"
-            />
+    <section
+      style={{ backgroundImage: `url(${img2})` }}
+      className="bg-cover object-cover bg-no-repeat bg-center text-white"
+    >
+      <div className="min-h-screen flex w-full p-10 bg-slate-950 bg-opacity-60 backdrop:blur-2x  justify-center items-center">
+        <div className="text-white w-full grid grid-cols-2 justify-center">
+          <div className="w-full flex flex-col">
+            <p className="text-[55px] font-bold">
+              Find the best tutor for free
+            </p>
+            <p>
+              Time waits for nobody and code waits for no programmer. Get
+              started right now and find the perfect course that suits your
+              liking....
+            </p>
+            <div className="w-full gap-6 pt-4 flex">
+              <button className="p-3 bg-[#040713] rounded">Start Coding</button>
+
+              <button className="p-3 bg-green-600 rounded">
+                Start Tutoring
+              </button>
+            </div>
+          </div>
+          <div>
+            {/* <img
+              className="rounded-2xl shadow-2xl shadow-gray-500"
+              src={img2}
+              alt="img2"
+            /> */}
           </div>
         </div>
       </div>
