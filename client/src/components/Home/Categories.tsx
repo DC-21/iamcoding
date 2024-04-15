@@ -1,5 +1,6 @@
 import programming from "../../assets/programming(1).png";
 import iot from "../../assets/iot(1).png";
+import cloud_computing from "../../assets/cloud-computing.png";
 
 const Categories = () => {
   return (
@@ -18,6 +19,7 @@ const Categories = () => {
             <p>IoT</p>
           </div>
           <div className="w-full rounded-2xl border border-slate-950 shadow-sm shadow-slate-950 justify-center items-center flex flex-col p-3">
+            <img src={cloud_computing} className=" w-40 h-36" alt="iot" />
             <p>Cloud Computing</p>
           </div>
           <div className="w-full rounded-2xl border border-slate-950 shadow-sm shadow-slate-950 justify-center items-center flex flex-col p-3">
