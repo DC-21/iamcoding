@@ -17,7 +17,7 @@ const Categories = () => {
   return (
     <section className="w-full min-h-screen flex flex-col">
       <div className="flex w-full flex-col justify-center items-center md:p-10 p-4">
-        <p className="md:text-[55px] font-bold text-[#06031d]">
+        <p className="md:text-[55px] text-[35px] font-bold text-[#06031d]">
           Our Categories
         </p>
         <div className="w-full grid md:grid-cols-4 grid-cols-1 gap-6 pt-4">
