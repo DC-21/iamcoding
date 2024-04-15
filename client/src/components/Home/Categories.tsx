@@ -1,6 +1,7 @@
 import programming from "../../assets/programming(1).png";
 import iot from "../../assets/iot(1).png";
 import cloud_computing from "../../assets/cloud-computing.png";
+import ai from "../../assets/ai.png";
 
 const Categories = () => {
   return (
@@ -14,16 +15,17 @@ const Categories = () => {
             <img src={programming} className=" w-40 h-36" alt="programming" />
             <p className="text-bold pt-2">Programming</p>
           </div>
-          <div className="w-full rounded-2xl border border-slate-950 shadow-sm shadow-slate-950 justify-center items-center flex flex-col p-3">
+          <div className="w-full cursor-pointer hover:shadow-xl hover:shadow-slate-60 rounded-2xl border border-slate-950 shadow-sm shadow-slate-950 justify-center items-center flex flex-col p-3">
             <img src={iot} className=" w-40 h-36" alt="iot" />
-            <p>IoT</p>
+            <p className="text-bold pt-2">IoT</p>
           </div>
-          <div className="w-full rounded-2xl border border-slate-950 shadow-sm shadow-slate-950 justify-center items-center flex flex-col p-3">
-            <img src={cloud_computing} className=" w-40 h-36" alt="iot" />
-            <p>Cloud Computing</p>
+          <div className="w-full cursor-pointer hover:shadow-xl hover:shadow-slate-60 rounded-2xl border border-slate-950 shadow-sm shadow-slate-950 justify-center items-center flex flex-col p-3">
+            <img src={cloud_computing} className=" w-40 h-36" alt="cloud" />
+            <p className="text-bold pt-2">Cloud Computing</p>
           </div>
-          <div className="w-full rounded-2xl border border-slate-950 shadow-sm shadow-slate-950 justify-center items-center flex flex-col p-3">
-            <p>AI</p>
+          <div className="w-full cursor-pointer hover:shadow-xl hover:shadow-slate-60 rounded-2xl border border-slate-950 shadow-sm shadow-slate-950 justify-center items-center flex flex-col p-3">
+            <img src={ai} className=" w-40 h-36" alt="ai" />
+            <p className="text-bold pt-2">AI</p>
           </div>
         </div>
         <div className="w-full grid md:grid-cols-4 grid-cols-1 gap-6 pt-4">
