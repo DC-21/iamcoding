@@ -44,13 +44,13 @@ const Navbar = () => {
       </div>
       <div className="md:flex hidden gap-4 items-center">
         <a className=" font-normal hover:underline" href="">
-          learn
+          Learn
         </a>
         <a className=" font-normal hover:underline" href="">
-          bootcamps
+          BootCamps
         </a>
         <a className=" font-normal hover:underline" href="">
-          teach
+          Teach
         </a>
       </div>
       <div className="md:flex hidden gap-4 items-center">
