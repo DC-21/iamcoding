@@ -1,4 +1,4 @@
-import React from "react";
+import img from "../../assets/dev.jpg";
 
 const Courses = () => {
   return (
@@ -23,6 +23,48 @@ const Courses = () => {
               />
             </svg>
           </a>
+        </div>
+        <div className="w-full grid md:grid-cols-5 grid-cols-1 pt-4 gap-4">
+          <div className="w-full flex flex-col">
+            <img
+              className="w-full h-96 object-cover rounded-lg"
+              src={img}
+              alt="img"
+            />
+            <div className="text-red-500 bg-red-800">hello</div>
+          </div>
+          <div className="w-full flex flex-col">
+            <img
+              className="w-full h-96 object-cover rounded-lg"
+              src={img}
+              alt="img"
+            />
+            <div className="text-red-500 bg-red-800">hello</div>
+          </div>
+          <div className="w-full flex flex-col">
+            <img
+              className="w-full h-96 object-cover rounded-lg"
+              src={img}
+              alt="img"
+            />
+            <div className="text-red-500 bg-red-800">hello</div>
+          </div>
+          <div className="w-full flex flex-col">
+            <img
+              className="w-full h-96 object-cover rounded-lg"
+              src={img}
+              alt="img"
+            />
+            <div className="text-red-500 bg-red-800">hello</div>
+          </div>
+          <div className="w-full flex flex-col">
+            <img
+              className="w-full h-96 object-cover rounded-lg"
+              src={img}
+              alt="img"
+            />
+            <div className="text-red-500 bg-red-800">hello</div>
+          </div>
         </div>
       </div>
     </section>
