@@ -18,9 +18,11 @@ const Hero = () => {
               liking....
             </p>
             <div className="w-full gap-6 pt-4 flex md:justify-start justify-center">
-              <button className="p-3 bg-[#040713] rounded">Start Coding</button>
+              <button className="p-3 bg-[#040713] hover:bg-[#23283f] rounded">
+                Start Coding
+              </button>
 
-              <button className="p-3 bg-green-600 rounded">
+              <button className="p-3 bg-green-600 hover:bg-green-500 rounded">
                 Start Tutoring
               </button>
             </div>
