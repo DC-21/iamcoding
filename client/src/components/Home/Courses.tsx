@@ -29,8 +29,11 @@ const Courses = () => {
             style={{ backgroundImage: `url(${img})` }}
             className="w-full bg-cover object-cover group  bg-center h-96 rounded-lg relative overflow-hidden"
           >
-            <div className="w-full text-white flex flex-col absolute -bottom-full p-4 group-hover:bottom-0 delay-150 duration-500 bg-slate-900">
+            <div className="w-full text-white flex flex-col absolute -bottom-2/4 p-4 group-hover:bottom-0 delay-150 duration-500 bg-slate-900">
               <p>Web Dev</p>
+              <p>Dr CODE.</p>
+              <p>4.7</p>
+              <p>Free Course</p>
               <p className="text-[12px]">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 Consequatur adipisci corporis dolores ab soluta doloremque quod
