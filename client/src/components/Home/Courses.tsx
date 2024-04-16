@@ -27,8 +27,12 @@ const Courses = () => {
         <div className="w-full grid md:grid-cols-5 grid-cols-1 pt-4 gap-4">
           <div
             style={{ backgroundImage: `url(${img})` }}
-            className="w-full flex bg-cover object-cover  bg-center h-96 rounded-lg relative"
-          ></div>
+            className="w-full bg-cover object-cover group  bg-center h-96 rounded-lg relative overflow-hidden"
+          >
+            <div className="w-full text-white flex flex-col absolute -bottom-full p-4 group-hover:bottom-0 delay-150 duration-500 bg-slate-900">
+              <p>Web Dev</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
