@@ -2,7 +2,7 @@ import img from "../../assets/dev.jpg";
 
 const Courses = () => {
   return (
-    <section className="w-full min-h-screen flex flex-col bg-[#5b5f72] items-center justify-center md:p-10 p-6 md:py-0 py-16">
+    <section className="w-full min-h-screen flex flex-col bg-[#5b5f72] items-center justify-center md:p-10 p-6 md:py-10 py-16">
       <p className="text-white md:text-[55px] text-[35px] font-bold">
         Top Courses
       </p>
@@ -24,8 +24,8 @@ const Courses = () => {
             </svg>
           </a>
         </div>
-        <div className="w-full grid md:grid-cols-5 grid-cols-1 pt-4 gap-8">
-          <div className="w-full flex flex-col md:h-80 h-auto rounded border border-slate-950">
+        <div className="w-full grid md:grid-cols-4 grid-cols-1 pt-4 gap-8">
+          <div className="w-full flex flex-col md:h-80 h-auto rounded-xl overflow-hidden border border-slate-950">
             <img className="object-cover h-52 w-full" src={img} alt="" />
             <div className="w-full text-white flex flex-col bg-slate-900 p-4">
               <p className="text-[16px]">
@@ -36,7 +36,7 @@ const Courses = () => {
               <p className="text-[14px]">Free Course</p>
             </div>
           </div>
-          <div className="w-full flex flex-col md:h-80 h-auto rounded border border-slate-950">
+          <div className="w-full flex flex-col md:h-80 h-auto rounded-xl overflow-hidden border border-slate-950">
             <img className="object-cover h-52 w-full" src={img} alt="" />
             <div className="w-full text-white flex flex-col bg-slate-900 p-4">
               <p className="text-[16px]">
@@ -47,7 +47,7 @@ const Courses = () => {
               <p className="text-[14px]">Free Course</p>
             </div>
           </div>
-          <div className="w-full flex flex-col md:h-80 h-auto rounded border border-slate-950">
+          <div className="w-full flex flex-col md:h-80 h-auto rounded-xl overflow-hidden border border-slate-950">
             <img className="object-cover h-52 w-full" src={img} alt="" />
             <div className="w-full text-white flex flex-col bg-slate-900 p-4">
               <p className="text-[16px]">
@@ -58,7 +58,7 @@ const Courses = () => {
               <p className="text-[14px]">Free Course</p>
             </div>
           </div>
-          <div className="w-full flex flex-col md:h-80 h-auto rounded border border-slate-950">
+          <div className="w-full flex flex-col md:h-80 h-auto rounded-xl overflow-hidden border border-slate-950">
             <img className="object-cover h-52 w-full" src={img} alt="" />
             <div className="w-full text-white flex flex-col bg-slate-900 p-4">
               <p className="text-[16px]">
@@ -69,7 +69,7 @@ const Courses = () => {
               <p className="text-[14px]">Free Course</p>
             </div>
           </div>
-          <div className="w-full flex flex-col md:h-80 h-auto rounded border border-slate-950">
+          <div className="w-full flex flex-col md:h-80 h-auto rounded-xl overflow-hidden border border-slate-950">
             <img className="object-cover h-52 w-full" src={img} alt="" />
             <div className="w-full text-white flex flex-col bg-slate-900 p-4">
               <p className="text-[16px]">
@@ -80,7 +80,7 @@ const Courses = () => {
               <p className="text-[14px]">Free Course</p>
             </div>
           </div>
-          <div className="w-full flex flex-col md:h-80 h-auto rounded border border-slate-950">
+          <div className="w-full flex flex-col md:h-80 h-auto rounded-xl overflow-hidden border border-slate-950">
             <img className="object-cover h-52 w-full" src={img} alt="" />
             <div className="w-full text-white flex flex-col bg-slate-900 p-4">
               <p className="text-[16px]">
@@ -91,7 +91,7 @@ const Courses = () => {
               <p className="text-[14px]">Free Course</p>
             </div>
           </div>
-          <div className="w-full flex flex-col md:h-80 h-auto rounded border border-slate-950">
+          <div className="w-full flex flex-col md:h-80 h-auto rounded-xl overflow-hidden border border-slate-950">
             <img className="object-cover h-52 w-full" src={img} alt="" />
             <div className="w-full text-white flex flex-col bg-slate-900 p-4">
               <p className="text-[16px]">
@@ -102,29 +102,7 @@ const Courses = () => {
               <p className="text-[14px]">Free Course</p>
             </div>
           </div>
-          <div className="w-full flex flex-col md:h-80 h-auto rounded border border-slate-950">
-            <img className="object-cover h-52 w-full" src={img} alt="" />
-            <div className="w-full text-white flex flex-col bg-slate-900 p-4">
-              <p className="text-[16px]">
-                Fullstack web developer course, Learn by doing
-              </p>
-              <p className="text-gray-400 text-[10px]">Dr. CODE</p>
-              <p className="text-[14px]">4.7</p>
-              <p className="text-[14px]">Free Course</p>
-            </div>
-          </div>
-          <div className="w-full flex flex-col md:h-80 h-auto rounded border border-slate-950">
-            <img className="object-cover h-52 w-full" src={img} alt="" />
-            <div className="w-full text-white flex flex-col bg-slate-900 p-4">
-              <p className="text-[16px]">
-                Fullstack web developer course, Learn by doing
-              </p>
-              <p className="text-gray-400 text-[10px]">Dr. CODE</p>
-              <p className="text-[14px]">4.7</p>
-              <p className="text-[14px]">Free Course</p>
-            </div>
-          </div>
-          <div className="w-full flex flex-col md:h-80 h-auto rounded border border-slate-950">
+          <div className="w-full flex flex-col md:h-80 h-auto rounded-xl overflow-hidden border border-slate-950">
             <img className="object-cover h-52 w-full" src={img} alt="" />
             <div className="w-full text-white flex flex-col bg-slate-900 p-4">
               <p className="text-[16px]">
