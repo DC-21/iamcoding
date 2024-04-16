@@ -31,6 +31,12 @@ const Courses = () => {
           >
             <div className="w-full text-white flex flex-col absolute -bottom-full p-4 group-hover:bottom-0 delay-150 duration-500 bg-slate-900">
               <p>Web Dev</p>
+              <p className="text-[12px]">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Consequatur adipisci corporis dolores ab soluta doloremque quod
+                a nostrum, deleniti cupiditate omnis, id vero, tempora quibusdam
+                alias laudantium facere necessitatibus quam!
+              </p>
             </div>
           </div>
         </div>
