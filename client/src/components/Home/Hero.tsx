@@ -27,13 +27,6 @@ const Hero = () => {
               </button>
             </div>
           </div>
-          <div>
-            {/* <img
-              className="rounded-2xl shadow-2xl shadow-gray-500"
-              src={img2}
-              alt="img2"
-            /> */}
-          </div>
         </div>
       </div>
     </section>
