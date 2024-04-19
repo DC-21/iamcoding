@@ -1,6 +1,16 @@
 import { useState } from "react";
+import { useRecoilValue, useResetRecoilState } from "recoil";
+import { activationTokenAtom } from "../../recoil/atom";
+import { ENDPOINT } from "../../utils/constants";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Activate = () => {
+  const navigate = useNavigate();
+  const activationtoken = useRecoilValue(activationTokenAtom);
+  const [activationCode, setActivationCode] = useState("");
+  const resetActivationToken = useResetRecoilState(activationTokenAtom);
+
   const [inputs, setInputs] = useState(Array(6).fill(""));
 
   const handleInput = (index: number, value: string) => {
@@ -22,6 +32,36 @@ const Activate = () => {
     }
 
     setInputs(newInputs);
+    setActivationCode(newInputs.join(""));
+  };
+
+  const activateAccount = async () => {
+    try {
+      console.log("Activation Code:", activationCode);
+      const response = await fetch(`${ENDPOINT}/auth/activate`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "activation-token": activationtoken,
+        },
+        body: JSON.stringify({ activationCode }),
+      });
+      console.log(activationtoken);
+
+      const data = await response.json();
+      console.log(data);
+      if (data.error === "jwt expired") {
+        toast.error("Activation code has expired");
+        resetActivationToken();
+      } else if (response.status === 200) {
+        resetActivationToken();
+        navigate("/login");
+      } else {
+        resetActivationToken();
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -35,7 +75,7 @@ const Activate = () => {
       className="bg-cover bg-center flex w-full"
     >
       <div className="md:p-10 p-6 flex flex-col w-full min-h-screen text-white justify-center items-center">
-        <form className="rounded w-96 border p-4 border-white">
+        <div className="rounded w-96 border p-4 border-white">
           <p className="text-center">
             We sent you a comfirmation code via email, enter it to activate
             account.
@@ -54,11 +94,14 @@ const Activate = () => {
             ))}
           </div>
           <div className="px-4 w-full flex">
-            <button className="w-full justify-center items-center rounded p-3 mt-4 bg-orange-700">
+            <button
+              onClick={activateAccount}
+              className="w-full justify-center items-center rounded p-3 mt-4 bg-orange-700 hover:bg-orange-600"
+            >
               Activate Account
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </section>
   );
