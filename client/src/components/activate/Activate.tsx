@@ -1,4 +1,24 @@
+import { useState } from "react";
+
 const Activate = () => {
+  const [inputs, setInputs] = useState(Array(6).fill(""));
+
+  const handleInput = (index: number, value: string) => {
+    const newInputs = [...inputs];
+    newInputs[index] = value;
+
+    // Move focus to the next input field if a digit is entered
+    if (value.length === 1 && index < inputs.length - 1) {
+      const nextIndex = index + 1;
+      const nextInput = document.getElementById(`input-${nextIndex}`);
+      if (nextInput) {
+        nextInput.focus();
+      }
+    }
+
+    setInputs(newInputs);
+  };
+
   return (
     <section
       style={{
@@ -16,12 +36,17 @@ const Activate = () => {
             account.
           </p>
           <div className="w-full grid grid-cols-6 gap-2 p-4 px-8 text-slate-950">
-            <input className="p-3 rounded" type="text" />
-            <input className="p-3 rounded" type="text" />
-            <input className="p-3 rounded" type="text" />
-            <input className="p-3 rounded" type="text" />
-            <input className="p-3 rounded" type="text" />
-            <input className="p-3 rounded" type="text" />
+            {inputs.map((value, index) => (
+              <input
+                key={index}
+                id={`input-${index}`}
+                className="p-3 border-white border-2 bg-gray-400 rounded text-center"
+                type="text"
+                maxLength={1}
+                value={value}
+                onChange={(e) => handleInput(index, e.target.value)}
+              />
+            ))}
           </div>
         </form>
       </div>
