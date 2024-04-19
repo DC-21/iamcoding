@@ -10,7 +10,7 @@ const SignUp = () => {
       className="bg-cover bg-center flex w-full"
     >
       <div className="md:p-10 p-6 flex flex-col w-full min-h-screen text-white justify-center items-center">
-        <div className=" w-1/2 border border-white rounded flex">
+        <div className="w-full md:w-1/3 border border-white rounded flex">
           <form className="  w-full flex flex-col p-4 justify-center items-center">
             <p className="text-lg">Sign Up To Get Started</p>
             <div className="w-full flex flex-col mt-4">
