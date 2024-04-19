@@ -1,4 +1,49 @@
+import axios from "axios";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { ENDPOINT } from "../../utils/constants";
+import toast from "react-hot-toast";
+
 const SignUp = () => {
+  const navigation = useNavigate();
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const SignUpFunction = async (data: any) => {
+    try {
+      setLoading(true);
+
+      const response = await axios.post(`${ENDPOINT}/auth/signup`, {
+        username: data.username,
+        firstname: data.firstname,
+        lastname: data.lastname,
+        email: data.email,
+        password: data.password,
+      });
+
+      if (response.status === 200) {
+        console.log(response);
+      }
+    } catch (error: any) {
+      if (error?.response && error?.response?.status === 401) {
+        toast.error(error?.response?.data);
+      } else if (error?.response && error?.response?.status === 404) {
+        toast.error(error?.response?.data);
+      } else {
+        toast.error("Login failed");
+        console.log(error);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section
       style={{
@@ -11,7 +56,10 @@ const SignUp = () => {
     >
       <div className="md:p-10 p-6 flex flex-col w-full min-h-screen text-white justify-center items-center">
         <div className="w-full md:w-1/3 border border-white rounded flex">
-          <form className="  w-full flex flex-col p-4 justify-center items-center">
+          <form
+            onSubmit={handleSubmit(SignUpFunction)}
+            className="  w-full flex flex-col p-4 justify-center items-center"
+          >
             <p className="text-lg">Sign Up To Get Started</p>
             <div className="w-full flex flex-col mt-4">
               <input
@@ -45,9 +93,19 @@ const SignUp = () => {
                 type="password"
               />
             </div>
-            <button className="mt-4 rounded p-3 bg-orange-800 w-full hover:bg-orange-700">
-              Sign Up
-            </button>
+
+            {loading ? (
+              <div
+                aria-disabled
+                className=" p-3 mt-4 cursor-not-allowed active:scale-[98%] flex items-center justify-center duration-200 font-bold text-center bg-orange-800 w-full hover:bg-orange-700 rounded text-white"
+              >
+                <div className=" w-6 h-6 rounded-full animate-spin border-4 border-white border-t-orange-700"></div>
+              </div>
+            ) : (
+              <button className="mt-4 rounded p-3 bg-orange-800 w-full hover:bg-orange-700">
+                Sign Up
+              </button>
+            )}
           </form>
         </div>
       </div>
