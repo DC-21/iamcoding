@@ -29,6 +29,21 @@ const SignUp = () => {
                 placeholder="lastname"
                 type="text"
               />
+              <input
+                className="p-3 mt-4 rounded bg-gray-300 outline-none text-slate-950"
+                placeholder="email"
+                type="email"
+              />
+              <input
+                className="p-3 mt-4 rounded bg-gray-300 outline-none text-slate-950"
+                placeholder="password"
+                type="password"
+              />
+              <input
+                className="p-3 mt-4 rounded bg-gray-300 outline-none text-slate-950"
+                placeholder="comfirm password"
+                type="password"
+              />
             </div>
           </form>
         </div>
