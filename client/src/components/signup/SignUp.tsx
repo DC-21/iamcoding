@@ -19,6 +19,16 @@ const SignUp = () => {
                 placeholder="username"
                 type="text"
               />
+              <input
+                className="p-3 mt-4 rounded bg-gray-300 outline-none text-slate-950"
+                placeholder="firstname"
+                type="text"
+              />
+              <input
+                className="p-3 mt-4 rounded bg-gray-300 outline-none text-slate-950"
+                placeholder="lastname"
+                type="text"
+              />
             </div>
           </form>
         </div>
