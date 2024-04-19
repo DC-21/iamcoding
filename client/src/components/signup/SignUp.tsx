@@ -8,12 +8,16 @@ import toast from "react-hot-toast";
 const SignUp = () => {
   const navigation = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
+
+  const password = watch("password");
 
   const SignUpFunction = async (data: any) => {
     try {
@@ -44,6 +48,15 @@ const SignUp = () => {
     }
   };
 
+  const onSubmit = (data: any) => {
+    // Call your SignUpFunction only if passwords match
+    if (data.password === data.confirmPassword) {
+      SignUpFunction(data);
+    } else {
+      toast.error("Passwords do not match");
+    }
+  };
+
   return (
     <section
       style={{
@@ -66,32 +79,95 @@ const SignUp = () => {
                 className="p-3 rounded bg-gray-300 outline-none text-slate-950"
                 placeholder="username"
                 type="text"
+                {...register("username", {
+                  required: "User name is required",
+                })}
+                aria-invalid={errors.username ? "true" : "false"}
               />
+              {errors.username && (
+                <span className="text-red-500">
+                  {errors.username.message as string}
+                </span>
+              )}
               <input
                 className="p-3 mt-4 rounded bg-gray-300 outline-none text-slate-950"
                 placeholder="firstname"
                 type="text"
+                {...register("firstname", {
+                  required: "First name is required",
+                })}
+                aria-invalid={errors.firstname ? "true" : "false"}
               />
+              {errors.firstname && (
+                <span className="text-red-500">
+                  {errors.firstname.message as string}
+                </span>
+              )}
               <input
                 className="p-3 mt-4 rounded bg-gray-300 outline-none text-slate-950"
                 placeholder="lastname"
                 type="text"
+                {...register("lastname", {
+                  required: "Last name is required",
+                })}
+                aria-invalid={errors.lastname ? "true" : "false"}
               />
+              {errors.lastname && (
+                <span className="text-red-500">
+                  {errors.lastname.message as string}
+                </span>
+              )}
               <input
                 className="p-3 mt-4 rounded bg-gray-300 outline-none text-slate-950"
                 placeholder="email"
                 type="email"
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                    message: "Invalid email address",
+                  },
+                })}
+                aria-invalid={errors.email ? "true" : "false"}
               />
+              {errors.email && (
+                <span className="text-red-500">
+                  {errors.email.message as string}
+                </span>
+              )}
               <input
                 className="p-3 mt-4 rounded bg-gray-300 outline-none text-slate-950"
                 placeholder="password"
                 type="password"
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password shouldn't be less than 6 characters",
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: "Password shouldn't be more than 20 characters",
+                  },
+                })}
+                aria-invalid={errors.password ? "true" : "false"}
               />
               <input
                 className="p-3 mt-4 rounded bg-gray-300 outline-none text-slate-950"
                 placeholder="comfirm password"
                 type="password"
+                {...register("confirmPassword", {
+                  required: "Confirm Password is required",
+                  validate: (value) =>
+                    value === password || "Passwords do not match",
+                })}
+                aria-invalid={errors.confirmPassword ? "true" : "false"}
               />
+              {errors.confirmPassword && (
+                <span className="text-red-500">
+                  {errors.confirmPassword.message as string}
+                </span>
+              )}
             </div>
 
             {loading ? (

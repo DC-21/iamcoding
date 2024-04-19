@@ -18,7 +18,7 @@ export class RegisterDto {
   readonly email: string;
 
   @IsNotEmpty()
-  @IsEmail()
+  @IsString()
   readonly password: string;
 
   constructor(d: RegisterDto) {
