@@ -56,7 +56,7 @@ const Navbar = () => {
         </a>
       </div>
       <div className="md:flex hidden gap-4 items-center">
-        <a href="">Register</a>
+        <Link to="/signup">Register</Link>
         <Link
           to="/login"
           className="bg-green-600 hover:bg-green-500 p-3 rounded-md"
