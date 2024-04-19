@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 const SignUp = () => {
   const navigation = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   const {
     register,
@@ -32,7 +31,7 @@ const SignUp = () => {
       });
 
       if (response.status === 200) {
-        console.log(response);
+        console.log(response.data.activation_token);
       }
     } catch (error: any) {
       if (error?.response && error?.response?.status === 401) {
