@@ -7,8 +7,13 @@ const Activate = () => {
     const newInputs = [...inputs];
     newInputs[index] = value;
 
-    // Move focus to the next input field if a digit is entered
-    if (value.length === 1 && index < inputs.length - 1) {
+    if (value === "" && index > 0) {
+      const previousIndex = index - 1;
+      const previousInput = document.getElementById(`input-${previousIndex}`);
+      if (previousInput) {
+        previousInput.focus();
+      }
+    } else if (value !== "" && index < inputs.length - 1) {
       const nextIndex = index + 1;
       const nextInput = document.getElementById(`input-${nextIndex}`);
       if (nextInput) {
@@ -35,7 +40,7 @@ const Activate = () => {
             We sent you a comfirmation code via email, enter it to activate
             account.
           </p>
-          <div className="w-full grid grid-cols-6 gap-2 p-4 px-8 text-slate-950">
+          <div className="w-full grid grid-cols-6 gap-2 p-4 text-slate-950">
             {inputs.map((value, index) => (
               <input
                 key={index}
@@ -47,6 +52,11 @@ const Activate = () => {
                 onChange={(e) => handleInput(index, e.target.value)}
               />
             ))}
+          </div>
+          <div className="px-4 w-full flex">
+            <button className="w-full justify-center items-center rounded p-3 mt-4 bg-orange-700">
+              Activate Account
+            </button>
           </div>
         </form>
       </div>
