@@ -11,9 +11,15 @@ const SignUp = () => {
     >
       <div className="md:p-10 p-6 flex flex-col w-full min-h-screen text-white justify-center items-center">
         <div className=" w-1/2 border border-white rounded flex">
-          <form className="  w-full flex p-4 justify-center items-center">
-            <p className="">Sign Up To Get Started</p>
-            <div></div>
+          <form className="  w-full flex flex-col p-4 justify-center items-center">
+            <p className="text-lg">Sign Up To Get Started</p>
+            <div className="w-full flex flex-col mt-4">
+              <input
+                className="p-3 rounded bg-gray-300 outline-none text-slate-950"
+                placeholder="username"
+                type="text"
+              />
+            </div>
           </form>
         </div>
       </div>
