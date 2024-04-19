@@ -64,7 +64,7 @@ export class UserCollection {
         },
         `${process.env.ACTIVATION_SECRET}`,
         {
-          expiresIn: "3m",
+          expiresIn: "2m",
         }
       );
 
