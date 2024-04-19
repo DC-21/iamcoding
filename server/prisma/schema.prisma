@@ -36,8 +36,8 @@ model User {
   lastname   String
   email      String     @unique
   password   String
-  phone      String
-  address    String
+  phone      String?
+  address    String?
   avatar     String?
   bootcamp   BootCamp[]
   bootcampId Int?

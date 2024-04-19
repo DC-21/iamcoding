@@ -51,8 +51,6 @@ export class UserCollection {
         lastname: dto.lastname,
         email: dto.email,
         password: hashPassword,
-        phone: dto.phone,
-        address: dto.address,
       };
 
       const activationCode = Math.floor(
@@ -124,8 +122,6 @@ export class UserCollection {
           lastname: decodedToken.user.lastname,
           email: decodedToken.user.email,
           password: decodedToken.user.password,
-          phone: decodedToken.user.phone,
-          address: decodedToken.user.address,
         },
       });
       return res

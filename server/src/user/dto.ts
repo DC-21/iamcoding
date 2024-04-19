@@ -21,22 +21,12 @@ export class RegisterDto {
   @IsEmail()
   readonly password: string;
 
-  @IsString()
-  @IsNotEmpty()
-  readonly phone: string;
-
-  @IsString()
-  @IsNotEmpty()
-  readonly address: string;
-
   constructor(d: RegisterDto) {
     this.username = d.username;
     this.firstname = d.firstname;
     this.lastname = d.lastname;
     this.email = d.email;
     this.password = d.password;
-    this.phone = d.phone;
-    this.address = d.address;
   }
 }
 
