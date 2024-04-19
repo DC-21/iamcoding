@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Login = () => {
   return (
     <section
@@ -29,6 +31,14 @@ const Login = () => {
           <button className="p-3 mt-4  bg-slate-950 hover:bg-[#0c0f20] rounded">
             Login
           </button>
+          <div className="w-full flex justify-between mt-2 text-gray-300">
+            <Link to="/" className="hover:text-gray-100">
+              Forgot password?
+            </Link>
+            <Link to="/" className="hover:text-gray-100">
+              Create an account
+            </Link>
+          </div>
         </div>
       </div>
     </section>
