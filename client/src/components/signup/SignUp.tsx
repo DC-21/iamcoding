@@ -45,6 +45,9 @@ const SignUp = () => {
                 type="password"
               />
             </div>
+            <button className="mt-4 rounded p-3 bg-orange-800 w-full hover:bg-orange-700">
+              Sign Up
+            </button>
           </form>
         </div>
       </div>
