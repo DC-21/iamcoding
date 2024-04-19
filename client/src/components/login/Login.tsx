@@ -1,6 +1,65 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import { ENDPOINT } from "../../utils/constants";
 
 const Login = () => {
+  const navigation = useNavigate();
+  const [loading, setLoading] = useState<boolean>(false);
+
+  // const auth = useSetRecoilState(isAuthenticatedAtom);
+  // const user = useSetRecoilState(userDetailsAtom);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const Login = async (data: any) => {
+    try {
+      setLoading(true);
+      const response = await axios.post(`${ENDPOINT}/auth/signin`, {
+        email: data.email,
+        password: data.email,
+      });
+      if (response.status === 200) {
+        console.log(response.data.token);
+
+        // const token = response.data.token;
+
+        // const loggedInResponse = await axios.get(
+        //   `${ENDPOINT}/user/get-logged-in`,
+        //   {
+        //     headers: {
+        //       accesstoken: token,
+        //     },
+        //   }
+        // );
+
+        // console.log(loggedInResponse);
+        // // auth(true);
+        // user(loggedInResponse.data.user);
+        navigation("/");
+
+        toast.success("Login successful");
+      }
+    } catch (error: any) {
+      if (error?.response && error?.response?.status === 401) {
+        toast.error(error?.response?.data);
+      } else if (error?.response && error?.response?.status === 404) {
+        toast.error(error?.response?.data);
+      } else {
+        toast.error("Login failed");
+        console.log(error);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section
       style={{
@@ -13,24 +72,50 @@ const Login = () => {
       className="bg-cover bg-center flex w-full"
     >
       <div className="md:p-10 p-6 flex flex-col w-full min-h-screen text-white justify-center items-center">
-        <div className="bg-[#230046] shadow-md shadow-purple-700 md:p-6 p-4 rounded md:w-96 w-full flex flex-col">
+        <form
+          onSubmit={handleSubmit(Login)}
+          className="bg-[#230046] shadow-md shadow-purple-700 md:p-6 p-4 rounded md:w-96 w-full flex flex-col"
+        >
           <p className="text-center text-xl">Login</p>
           <div className="w-full flex mt-4 flex-col gap-4">
             <input
               className="p-3 outline-none rounded text-slate-950"
               placeholder="email"
               type="email"
+              {...register("email", {
+                required: "Email is required",
+              })}
+              aria-invalid={errors.email ? "true" : "false"}
             />
+            {errors.email && (
+              <span className="text-red-500">
+                {errors.email.message as string}
+              </span>
+            )}
             <input
               className="p-3 outline-none rounded text-slate-950"
               placeholder="password"
               type="password"
+              {...register("password", {
+                required: "Password is required",
+              })}
+              aria-invalid={errors.password ? "true" : "false"}
             />
           </div>
 
-          <button className="p-3 mt-4  bg-slate-950 hover:bg-[#0c0f20] rounded">
-            Login
-          </button>
+          {loading ? (
+            <div
+              aria-disabled
+              className=" p-3 mt-4 cursor-not-allowed active:scale-[98%] flex items-center justify-center duration-200 font-bold text-center bg-slate-950 hover:bg-[#0c0f20] rounded text-white"
+            >
+              <div className=" w-6 h-6 rounded-full animate-spin border-4 border-white border-t-[#48156a]"></div>
+            </div>
+          ) : (
+            <button className="p-3 mt-4  bg-slate-950 hover:bg-[#0c0f20] rounded">
+              Login
+            </button>
+          )}
+
           <div className="w-full flex justify-between mt-2 text-gray-300">
             <Link to="/" className="hover:text-gray-100">
               Forgot password?
@@ -39,7 +124,7 @@ const Login = () => {
               Create an account
             </Link>
           </div>
-        </div>
+        </form>
       </div>
     </section>
   );
