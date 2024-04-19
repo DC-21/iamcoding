@@ -6,7 +6,7 @@ import { ENDPOINT } from "../../utils/constants";
 import toast from "react-hot-toast";
 
 const SignUp = () => {
-  const navigation = useNavigate();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
 
   const {
@@ -32,6 +32,7 @@ const SignUp = () => {
 
       if (response.status === 200) {
         console.log(response.data.activation_token);
+        navigate("/activate");
       }
     } catch (error: any) {
       if (error?.response && error?.response?.status === 401) {
@@ -44,15 +45,6 @@ const SignUp = () => {
       }
     } finally {
       setLoading(false);
-    }
-  };
-
-  const onSubmit = (data: any) => {
-    // Call your SignUpFunction only if passwords match
-    if (data.password === data.confirmPassword) {
-      SignUpFunction(data);
-    } else {
-      toast.error("Passwords do not match");
     }
   };
 
