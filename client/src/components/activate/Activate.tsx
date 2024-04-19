@@ -15,6 +15,14 @@ const Activate = () => {
             We sent you a comfirmation code via email, enter it to activate
             account.
           </p>
+          <div className="w-full grid grid-cols-6 gap-2 p-4 px-8 text-slate-950">
+            <input className="p-3 rounded" type="text" />
+            <input className="p-3 rounded" type="text" />
+            <input className="p-3 rounded" type="text" />
+            <input className="p-3 rounded" type="text" />
+            <input className="p-3 rounded" type="text" />
+            <input className="p-3 rounded" type="text" />
+          </div>
         </form>
       </div>
     </section>
