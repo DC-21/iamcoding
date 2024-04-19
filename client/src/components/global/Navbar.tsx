@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
   return (
     <nav className="md:px-10 px-6 py-4 flex w-full gap-2 justify-between items-center text-white bg-[#06031d] sticky top-0 bg-opacity-100 z-50 backdrop-blur-md">
-      <a className="md:text-3xl text-2xl font-bold text-green-500" href="">
+      <Link to="/" className="md:text-3xl text-2xl font-bold text-green-500">
         i<span className="text-white">amcoding</span>
-      </a>
+      </Link>
       <div className="p-2 md:flex hidden justify-center items-center bg-white text-slate-950 rounded">
         <input
           className="rounded outline-none"
@@ -55,9 +57,12 @@ const Navbar = () => {
       </div>
       <div className="md:flex hidden gap-4 items-center">
         <a href="">Register</a>
-        <a className="bg-green-600 hover:bg-green-500 p-3 rounded-md" href="">
+        <Link
+          to="/login"
+          className="bg-green-600 hover:bg-green-500 p-3 rounded-md"
+        >
           Login
-        </a>
+        </Link>
       </div>
     </nav>
   );

@@ -1,13 +1,22 @@
-import Footer from "./components/global/Footer";
-import Navbar from "./components/global/Navbar";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
+import Login from "./components/login/Login";
+import Layout from "./components/Layout";
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Home />
-      <Footer />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <Home />
+            </Layout>
+          }
+        />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </>
   );
 }
