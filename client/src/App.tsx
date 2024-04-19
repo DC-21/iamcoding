@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Login from "./components/login/Login";
 import Layout from "./components/Layout";
 import SignUp from "./components/signup/SignUp";
+import Activate from "./components/activate/Activate";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/activate" element={<Activate />} />
       </Routes>
     </>
   );
