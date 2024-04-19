@@ -7,7 +7,8 @@ export const isAuthenticatedAtom = atom<boolean>({
   effects_UNSTABLE: [localPersistEffect],
 });
 
-export const privateKeyAtom = atom({
-  key: "privateKeyAtom",
+export const activationTokenAtom = atom({
+  key: "activationTokenAtom",
   default: "",
+  effects_UNSTABLE: [localPersistEffect],
 });

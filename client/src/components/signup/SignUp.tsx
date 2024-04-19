@@ -4,10 +4,14 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ENDPOINT } from "../../utils/constants";
 import toast from "react-hot-toast";
+import { useRecoilState } from "recoil";
+import { activationTokenAtom } from "../../recoil/atom";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
+  const [_activationToken, setActivationToken] =
+    useRecoilState(activationTokenAtom);
 
   const {
     register,
@@ -32,6 +36,7 @@ const SignUp = () => {
 
       if (response.status === 200) {
         console.log(response.data.activation_token);
+        setActivationToken(response.data.activation_token);
         navigate("/activate");
       }
     } catch (error: any) {
@@ -143,6 +148,11 @@ const SignUp = () => {
                 })}
                 aria-invalid={errors.password ? "true" : "false"}
               />
+              {errors.password && (
+                <span className="text-red-500">
+                  {errors.password.message as string}
+                </span>
+              )}
               <input
                 className="p-3 mt-4 rounded bg-gray-300 outline-none text-slate-950"
                 placeholder="comfirm password"
