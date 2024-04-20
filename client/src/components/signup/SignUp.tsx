@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ENDPOINT } from "../../utils/constants";
 import toast from "react-hot-toast";
 import { useRecoilState } from "recoil";
@@ -183,6 +183,14 @@ const SignUp = () => {
                 Sign Up
               </button>
             )}
+            <div className="w-full flex justify-between mt-2 text-gray-300">
+              <Link to="/" className="hover:text-gray-100">
+                Already a member?
+              </Link>
+              <Link to="/login" className="hover:text-gray-100">
+                Login
+              </Link>
+            </div>
           </form>
         </div>
       </div>
