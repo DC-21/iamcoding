@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const Activate = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState<boolean>(false);
   const activationtoken = useRecoilValue(activationTokenAtom);
   const [activationCode, setActivationCode] = useState("");
   const resetActivationToken = useResetRecoilState(activationTokenAtom);
@@ -37,6 +38,8 @@ const Activate = () => {
 
   const activateAccount = async () => {
     try {
+      setLoading(true);
+
       console.log("Activation Code:", activationCode);
       const response = await fetch(`${ENDPOINT}/auth/activate`, {
         method: "POST",
@@ -61,6 +64,8 @@ const Activate = () => {
       }
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -94,12 +99,21 @@ const Activate = () => {
             ))}
           </div>
           <div className="px-4 w-full flex">
-            <button
-              onClick={activateAccount}
-              className="w-full justify-center items-center rounded p-3 mt-4 bg-orange-700 hover:bg-orange-600"
-            >
-              Activate Account
-            </button>
+            {loading ? (
+              <div
+                aria-disabled
+                className=" p-3 mt-4 cursor-not-allowed active:scale-[98%] flex items-center justify-center duration-200 font-bold text-center bg-orange-800 w-full hover:bg-orange-700 rounded text-white"
+              >
+                <div className=" w-6 h-6 rounded-full animate-spin border-4 border-white border-t-orange-700"></div>
+              </div>
+            ) : (
+              <button
+                onClick={activateAccount}
+                className="w-full justify-center items-center rounded p-3 mt-4 bg-orange-700 hover:bg-orange-600"
+              >
+                Activate Account
+              </button>
+            )}
           </div>
         </div>
       </div>
