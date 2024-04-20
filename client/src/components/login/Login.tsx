@@ -34,7 +34,7 @@ const Login = () => {
         const token = response.data.token;
 
         const loggedInResponse = await axios.get(
-          `${ENDPOINT}/user/get-logged-in`,
+          `${ENDPOINT}/auth/get-logged-in`,
           {
             headers: {
               accesstoken: token,

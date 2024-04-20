@@ -167,7 +167,7 @@ export class UserCollection {
       }
 
       const payload = {
-        sub: user.id,
+        id: user.id,
       };
 
       const token = jwt.sign(payload, `${process.env.ACCESS_TOKEN_SECRET}`);
@@ -196,6 +196,9 @@ export class UserCollection {
         token,
         `${process.env.ACCESS_TOKEN_SECRET}`
       ) as jwt.JwtPayload;
+
+      console.log(decoded);
+
       const userId = decoded.id;
 
       const user = await prisma.user.findUnique({
@@ -215,9 +218,10 @@ export class UserCollection {
       return res.status(StatusCodes.OK).json({
         user: userDto,
       });
-    } catch (error) {
+    } catch (error: any) {
       return res.status(StatusCodes.BAD_REQUEST).json({
         message: "Invalid token",
+        error: error.message,
       });
     }
   }
