@@ -4,12 +4,14 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { ENDPOINT } from "../../utils/constants";
+import { useSetRecoilState } from "recoil";
+import { isAuthenticatedAtom } from "../../recoil/atom";
 
 const Login = () => {
   const navigation = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
 
-  // const auth = useSetRecoilState(isAuthenticatedAtom);
+  const auth = useSetRecoilState(isAuthenticatedAtom);
   // const user = useSetRecoilState(userDetailsAtom);
 
   const {
@@ -26,6 +28,7 @@ const Login = () => {
         password: data.password,
       });
       if (response.status === 200) {
+        auth(true);
         console.log(response.data.token);
 
         // const token = response.data.token;
