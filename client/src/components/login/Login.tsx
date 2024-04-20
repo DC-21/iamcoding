@@ -23,7 +23,7 @@ const Login = () => {
       setLoading(true);
       const response = await axios.post(`${ENDPOINT}/auth/signin`, {
         email: data.email,
-        password: data.email,
+        password: data.password,
       });
       if (response.status === 200) {
         console.log(response.data.token);
