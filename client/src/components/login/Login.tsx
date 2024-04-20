@@ -120,7 +120,7 @@ const Login = () => {
             <Link to="/" className="hover:text-gray-100">
               Forgot password?
             </Link>
-            <Link to="/" className="hover:text-gray-100">
+            <Link to="/signup" className="hover:text-gray-100">
               Create an account
             </Link>
           </div>
