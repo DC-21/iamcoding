@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { LoginDto, RegisterDto, UpdateAvatarDto } from "./dto";
+import { LoginDto, RegisterDto, UpdateAvatarDto, UserResponseDto } from "./dto";
 import { validate } from "class-validator";
 import { StatusCodes } from "http-status-codes";
 import { prisma } from "../config/prisma";
@@ -179,6 +179,45 @@ export class UserCollection {
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         message: "Something went wrong",
         error: error.message || error,
+      });
+    }
+  }
+
+  async getLoggedIn(req: Request, res: Response) {
+    try {
+      const token = req.headers.accesstoken;
+      if (!token || Array.isArray(token)) {
+        return res
+          .status(StatusCodes.UNAUTHORIZED)
+          .json({ message: "Access token missing or invalid" });
+      }
+
+      const decoded = jwt.verify(
+        token,
+        `${process.env.ACCESS_TOKEN_SECRET}`
+      ) as jwt.JwtPayload;
+      const userId = decoded.id;
+
+      const user = await prisma.user.findUnique({
+        where: {
+          id: userId,
+        },
+      });
+
+      if (!user) {
+        return res.status(StatusCodes.NOT_FOUND).json({
+          message: "User not found",
+        });
+      }
+
+      const userDto = new UserResponseDto(user as any);
+
+      return res.status(StatusCodes.OK).json({
+        user: userDto,
+      });
+    } catch (error) {
+      return res.status(StatusCodes.BAD_REQUEST).json({
+        message: "Invalid token",
       });
     }
   }

@@ -52,3 +52,21 @@ export class UpdateAvatarDto {
     this.avatar = d.avatar;
   }
 }
+
+export class UserResponseDto {
+  id: number;
+  username: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  avatar: string;
+
+  constructor(user: UserResponseDto) {
+    this.id = user.id;
+    this.username = user.username;
+    this.firstname = user.firstname;
+    this.lastname = user.lastname;
+    this.email = user.email;
+    this.avatar = user.avatar;
+  }
+}
