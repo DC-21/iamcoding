@@ -5,14 +5,14 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { ENDPOINT } from "../../utils/constants";
 import { useSetRecoilState } from "recoil";
-import { isAuthenticatedAtom } from "../../recoil/atom";
+import { isAuthenticatedAtom, userDetailsAtom } from "../../recoil/atom";
 
 const Login = () => {
   const navigation = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
 
   const auth = useSetRecoilState(isAuthenticatedAtom);
-  // const user = useSetRecoilState(userDetailsAtom);
+  const user = useSetRecoilState(userDetailsAtom);
 
   const {
     register,
@@ -31,20 +31,19 @@ const Login = () => {
         auth(true);
         console.log(response.data.token);
 
-        // const token = response.data.token;
+        const token = response.data.token;
 
-        // const loggedInResponse = await axios.get(
-        //   `${ENDPOINT}/user/get-logged-in`,
-        //   {
-        //     headers: {
-        //       accesstoken: token,
-        //     },
-        //   }
-        // );
+        const loggedInResponse = await axios.get(
+          `${ENDPOINT}/user/get-logged-in`,
+          {
+            headers: {
+              accesstoken: token,
+            },
+          }
+        );
 
-        // console.log(loggedInResponse);
-        // // auth(true);
-        // user(loggedInResponse.data.user);
+        console.log(loggedInResponse);
+        user(loggedInResponse.data.user);
         navigation("/");
 
         toast.success("Login successful");

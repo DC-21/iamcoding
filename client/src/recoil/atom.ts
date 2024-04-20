@@ -12,3 +12,16 @@ export const activationTokenAtom = atom({
   default: "",
   effects_UNSTABLE: [localPersistEffect],
 });
+
+export const userDetailsAtom = atom({
+  key: "userDetailsAtom",
+  default: {
+    id: 0,
+    username: "",
+    firstname: "",
+    lastname: "",
+    email: "",
+    avatar: "",
+  },
+  effects_UNSTABLE: [localPersistEffect],
+});
