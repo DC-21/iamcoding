@@ -168,21 +168,11 @@ export class UserCollection {
 
       const payload = {
         sub: user.id,
-        username: user.username,
-        firstname: user.firstname,
-        lastname: user.lastname,
-        email: user.email,
-        address: user.address,
-        avatar: user.avatar,
       };
 
       const token = jwt.sign(payload, `${process.env.ACCESS_TOKEN_SECRET}`);
 
       return res.status(StatusCodes.OK).json({
-        firstname: user.firstname,
-        lastname: user.lastname,
-        email: user.email,
-        address: user.address,
         token: token,
       });
     } catch (error: any) {
