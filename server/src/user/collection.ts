@@ -54,7 +54,7 @@ export class UserCollection {
       };
 
       const activationCode = Math.floor(
-        1000 + Math.random() * 900000
+        1000 + Math.random() * 987654
       ).toString();
 
       const token = await jwt.sign(
