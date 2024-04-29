@@ -6,8 +6,15 @@ const Bootcamps = () => {
       <p className="md:text-[55px] text-[35px] font-bold text-[#06031d]">
         BootCamps For You
       </p>
-      <div>
-        <img src={bootcamp} alt="bootcamp" />
+      <div className="p-6 grid grid-cols-2 justify-center items-center w-full gap-6">
+        <img
+          className="p-4 shadow shadow-black rounded-2xl"
+          src={bootcamp}
+          alt="bootcamp"
+        />
+        <div>
+          <p>We bring you closer to world class bootcamps</p>
+        </div>
       </div>
     </div>
   );
