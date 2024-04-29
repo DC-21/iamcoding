@@ -54,9 +54,9 @@ const Navbar = () => {
         <a className=" font-normal hover:underline" href="">
           Teach
         </a>
-        <a className=" font-normal hover:underline" href="">
+        <Link to="/code-challenges" className=" font-normal hover:underline">
           Code Challenges
-        </a>
+        </Link>
       </div>
       <div className="md:flex hidden gap-4 items-center">
         <Link
