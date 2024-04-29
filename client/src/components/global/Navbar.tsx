@@ -6,7 +6,7 @@ const Navbar = () => {
       <Link to="/" className="md:text-3xl text-2xl font-bold text-green-500">
         i<span className="text-white">amcoding</span>
       </Link>
-      <div className="p-2 md:flex hidden justify-center items-center bg-white text-slate-950 rounded">
+      <div className="p-3 md:flex hidden justify-center items-center bg-white text-slate-950 rounded-xl">
         <input
           className="rounded outline-none"
           placeholder="search"
@@ -54,12 +54,20 @@ const Navbar = () => {
         <a className=" font-normal hover:underline" href="">
           Teach
         </a>
+        <a className=" font-normal hover:underline" href="">
+          Code Challenges
+        </a>
       </div>
       <div className="md:flex hidden gap-4 items-center">
-        <Link to="/signup">Register</Link>
+        <Link
+          className="p-3 rounded-xl shadow hover:shadow-green-500"
+          to="/signup"
+        >
+          Register
+        </Link>
         <Link
           to="/login"
-          className="bg-green-600 hover:bg-green-500 p-3 rounded-md"
+          className="bg-green-600 p-3 rounded-lg hover:rounded-xl"
         >
           Login
         </Link>
